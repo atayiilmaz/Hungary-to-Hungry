@@ -27,8 +27,6 @@ namespace From_Hungary_for_hungry
         public static string dbconnection = "Data Source=DESKTOP-2EBNC0D\\SQLEXPRESS;Initial Catalog=hthDB;Integrated Security=True";
         SqlConnection con = new SqlConnection(dbconnection);
 
-
-
         private void AdminForm_Load(object sender, EventArgs e)
         {
             //for reading restaurant accounts
