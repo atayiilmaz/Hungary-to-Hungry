@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            restaurantsDt = new DataGridView();
             menuPnl = new Panel();
             logoutBtn = new Button();
             allAccountsBtn = new Button();
@@ -35,18 +36,47 @@
             mainPnl = new Panel();
             label1 = new Label();
             allAccountsPnl = new Panel();
+            accountsDt = new DataGridView();
             label2 = new Label();
             deleteAccountBtn = new Button();
             allRestaurantsPnl = new Panel();
+            rmvMembershipBtn = new Button();
             membershipBtn = new Button();
             label3 = new Label();
-            RestaurantsListV = new ListView();
-            accountsListV = new ListView();
+            ((System.ComponentModel.ISupportInitialize)restaurantsDt).BeginInit();
             menuPnl.SuspendLayout();
             mainPnl.SuspendLayout();
             allAccountsPnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)accountsDt).BeginInit();
             allRestaurantsPnl.SuspendLayout();
             SuspendLayout();
+            // 
+            // restaurantsDt
+            // 
+            restaurantsDt.AllowUserToAddRows = false;
+            restaurantsDt.AllowUserToDeleteRows = false;
+            restaurantsDt.AllowUserToOrderColumns = true;
+            restaurantsDt.AllowUserToResizeColumns = false;
+            restaurantsDt.AllowUserToResizeRows = false;
+            restaurantsDt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            restaurantsDt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            restaurantsDt.BorderStyle = BorderStyle.None;
+            restaurantsDt.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            restaurantsDt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            restaurantsDt.EditMode = DataGridViewEditMode.EditOnEnter;
+            restaurantsDt.Location = new Point(68, 115);
+            restaurantsDt.Name = "restaurantsDt";
+            restaurantsDt.ReadOnly = true;
+            restaurantsDt.RowHeadersVisible = false;
+            restaurantsDt.RowHeadersWidth = 51;
+            restaurantsDt.RowTemplate.Height = 29;
+            restaurantsDt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            restaurantsDt.ShowCellErrors = false;
+            restaurantsDt.ShowCellToolTips = false;
+            restaurantsDt.ShowEditingIcon = false;
+            restaurantsDt.ShowRowErrors = false;
+            restaurantsDt.Size = new Size(820, 382);
+            restaurantsDt.TabIndex = 2;
             // 
             // menuPnl
             // 
@@ -111,13 +141,35 @@
             // 
             // allAccountsPnl
             // 
-            allAccountsPnl.Controls.Add(accountsListV);
+            allAccountsPnl.Controls.Add(accountsDt);
             allAccountsPnl.Controls.Add(label2);
             allAccountsPnl.Controls.Add(deleteAccountBtn);
             allAccountsPnl.Location = new Point(330, 0);
             allAccountsPnl.Name = "allAccountsPnl";
             allAccountsPnl.Size = new Size(932, 673);
             allAccountsPnl.TabIndex = 1;
+            // 
+            // accountsDt
+            // 
+            accountsDt.AllowUserToAddRows = false;
+            accountsDt.AllowUserToDeleteRows = false;
+            accountsDt.AllowUserToOrderColumns = true;
+            accountsDt.AllowUserToResizeColumns = false;
+            accountsDt.AllowUserToResizeRows = false;
+            accountsDt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            accountsDt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            accountsDt.BorderStyle = BorderStyle.None;
+            accountsDt.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            accountsDt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            accountsDt.Location = new Point(68, 126);
+            accountsDt.Name = "accountsDt";
+            accountsDt.ReadOnly = true;
+            accountsDt.RowHeadersVisible = false;
+            accountsDt.RowHeadersWidth = 51;
+            accountsDt.RowTemplate.Height = 29;
+            accountsDt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            accountsDt.Size = new Size(820, 371);
+            accountsDt.TabIndex = 2;
             // 
             // label2
             // 
@@ -133,20 +185,32 @@
             // 
             deleteAccountBtn.Location = new Point(68, 523);
             deleteAccountBtn.Name = "deleteAccountBtn";
-            deleteAccountBtn.Size = new Size(154, 29);
+            deleteAccountBtn.Size = new Size(175, 29);
             deleteAccountBtn.TabIndex = 0;
             deleteAccountBtn.Text = "Delete Account";
             deleteAccountBtn.UseVisualStyleBackColor = true;
+            deleteAccountBtn.Click += deleteAccountBtn_Click;
             // 
             // allRestaurantsPnl
             // 
-            allRestaurantsPnl.Controls.Add(RestaurantsListV);
+            allRestaurantsPnl.Controls.Add(rmvMembershipBtn);
+            allRestaurantsPnl.Controls.Add(restaurantsDt);
             allRestaurantsPnl.Controls.Add(membershipBtn);
             allRestaurantsPnl.Controls.Add(label3);
             allRestaurantsPnl.Location = new Point(330, 0);
             allRestaurantsPnl.Name = "allRestaurantsPnl";
             allRestaurantsPnl.Size = new Size(932, 673);
             allRestaurantsPnl.TabIndex = 3;
+            // 
+            // rmvMembershipBtn
+            // 
+            rmvMembershipBtn.Location = new Point(249, 523);
+            rmvMembershipBtn.Name = "rmvMembershipBtn";
+            rmvMembershipBtn.Size = new Size(175, 29);
+            rmvMembershipBtn.TabIndex = 3;
+            rmvMembershipBtn.Text = "Remove Membership";
+            rmvMembershipBtn.UseVisualStyleBackColor = true;
+            rmvMembershipBtn.Click += rmvMembershipBtn_Click;
             // 
             // membershipBtn
             // 
@@ -156,6 +220,7 @@
             membershipBtn.TabIndex = 1;
             membershipBtn.Text = "Give Membership";
             membershipBtn.UseVisualStyleBackColor = true;
+            membershipBtn.Click += membershipBtn_Click;
             // 
             // label3
             // 
@@ -167,38 +232,26 @@
             label3.TabIndex = 0;
             label3.Text = "All Restaurants";
             // 
-            // RestaurantsListV
-            // 
-            RestaurantsListV.Location = new Point(68, 115);
-            RestaurantsListV.Name = "RestaurantsListV";
-            RestaurantsListV.Size = new Size(820, 382);
-            RestaurantsListV.TabIndex = 2;
-            RestaurantsListV.UseCompatibleStateImageBehavior = false;
-            // 
-            // accountsListV
-            // 
-            accountsListV.Location = new Point(68, 126);
-            accountsListV.Name = "accountsListV";
-            accountsListV.Size = new Size(820, 382);
-            accountsListV.TabIndex = 2;
-            accountsListV.UseCompatibleStateImageBehavior = false;
-            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1262, 673);
             Controls.Add(menuPnl);
-            Controls.Add(allAccountsPnl);
             Controls.Add(allRestaurantsPnl);
+            Controls.Add(allAccountsPnl);
             Controls.Add(mainPnl);
+            MaximizeBox = false;
             Name = "AdminForm";
-            Text = "AdminForm";
+            Text = "Admin Panel";
+            Load += AdminForm_Load;
+            ((System.ComponentModel.ISupportInitialize)restaurantsDt).EndInit();
             menuPnl.ResumeLayout(false);
             mainPnl.ResumeLayout(false);
             mainPnl.PerformLayout();
             allAccountsPnl.ResumeLayout(false);
             allAccountsPnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)accountsDt).EndInit();
             allRestaurantsPnl.ResumeLayout(false);
             allRestaurantsPnl.PerformLayout();
             ResumeLayout(false);
@@ -218,7 +271,8 @@
         private Panel allRestaurantsPnl;
         private Label label3;
         private Button membershipBtn;
-        private ListView RestaurantsListV;
-        private ListView accountsListV;
+        private DataGridView accountsDt;
+        private DataGridView restaurantsDt;
+        private Button rmvMembershipBtn;
     }
 }
