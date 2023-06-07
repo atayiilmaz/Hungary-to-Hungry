@@ -188,6 +188,7 @@
             Controls.Add(panel1);
             Controls.Add(panel2);
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             MinimumSize = new Size(912, 518);
             Name = "Form1";
             Text = "Form1";

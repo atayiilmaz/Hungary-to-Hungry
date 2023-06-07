@@ -169,7 +169,7 @@ namespace From_Hungary_for_hungry
 
             }
         }
-   
+
         string GetUserAccountType(string mail)
         {
             string accountType = "Customer";
@@ -177,23 +177,23 @@ namespace From_Hungary_for_hungry
             // Query the database to get the account type based on the email
             string q = "SELECT type FROM tb_accounts WHERE email = @email";
 
-                using (SqlCommand command = new SqlCommand(q, con))
+            using (SqlCommand command = new SqlCommand(q, con))
+            {
+                command.Parameters.AddWithValue("@email", mail);
+
+                con.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    command.Parameters.AddWithValue("@email", mail);
-
-                    con.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            accountType = reader["type"].ToString();
-                        }
+                        accountType = reader["type"].ToString();
                     }
+                }
 
                 con.Close();
-                }
-            
+            }
+
             return accountType;
         }
 
@@ -225,11 +225,11 @@ namespace From_Hungary_for_hungry
                 }
                 else if (accountType == "Restaurant")
                 {
-                    //MessageBox.Show("Login successful!");
+                    MessageBox.Show("Login successful!");
                     // Redirect to restaurant form
-                    /*RestaurantForm restaurantForm = new RestaurantForm();
-                     * this.Hide();
-                    restaurantForm.Show();*/
+                    RestaurantForm restaurantForm = new RestaurantForm();
+                    this.Hide();
+                    restaurantForm.Show();
                 }
                 else
                 {

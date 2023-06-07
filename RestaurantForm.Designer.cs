@@ -36,12 +36,16 @@
             welcomePnl = new Panel();
             label1 = new Label();
             viewOrdersPnl = new Panel();
+            panel1 = new Panel();
+            deleteBtn = new Button();
+            doneBtn = new Button();
+            cancelledBtn = new Button();
+            setActiveBtn = new Button();
+            orderDgv = new DataGridView();
             label2 = new Label();
             psettingsPnl = new Panel();
             locationTxtB = new TextBox();
             label8 = new Label();
-            ratingTxtB = new TextBox();
-            label9 = new Label();
             busNameTxtB = new TextBox();
             label10 = new Label();
             saveBtn = new Button();
@@ -53,12 +57,29 @@
             label5 = new Label();
             label3 = new Label();
             viewMenuPnl = new Panel();
+            panel3 = new Panel();
+            categoryCb = new ComboBox();
+            label12 = new Label();
+            priceTxt = new TextBox();
+            label11 = new Label();
+            pnameTxt = new TextBox();
+            label9 = new Label();
+            panel2 = new Panel();
+            delBtn = new Button();
+            editBtn = new Button();
+            addBtn = new Button();
+            menuDgv = new DataGridView();
             label4 = new Label();
             menuPnl.SuspendLayout();
             welcomePnl.SuspendLayout();
             viewOrdersPnl.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)orderDgv).BeginInit();
             psettingsPnl.SuspendLayout();
             viewMenuPnl.SuspendLayout();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)menuDgv).BeginInit();
             SuspendLayout();
             // 
             // menuPnl
@@ -135,12 +156,86 @@
             // 
             // viewOrdersPnl
             // 
+            viewOrdersPnl.Controls.Add(panel1);
+            viewOrdersPnl.Controls.Add(orderDgv);
             viewOrdersPnl.Controls.Add(label2);
             viewOrdersPnl.Dock = DockStyle.Right;
-            viewOrdersPnl.Location = new Point(-1534, 0);
+            viewOrdersPnl.Location = new Point(330, 0);
             viewOrdersPnl.Name = "viewOrdersPnl";
             viewOrdersPnl.Size = new Size(932, 673);
             viewOrdersPnl.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(deleteBtn);
+            panel1.Controls.Add(doneBtn);
+            panel1.Controls.Add(cancelledBtn);
+            panel1.Controls.Add(setActiveBtn);
+            panel1.Location = new Point(690, 148);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(185, 478);
+            panel1.TabIndex = 2;
+            // 
+            // deleteBtn
+            // 
+            deleteBtn.Dock = DockStyle.Top;
+            deleteBtn.Location = new Point(0, 150);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(185, 50);
+            deleteBtn.TabIndex = 3;
+            deleteBtn.Text = "Delete Completed Orders";
+            deleteBtn.UseVisualStyleBackColor = true;
+            deleteBtn.Click += deleteBtn_Click;
+            // 
+            // doneBtn
+            // 
+            doneBtn.Dock = DockStyle.Top;
+            doneBtn.Location = new Point(0, 100);
+            doneBtn.Name = "doneBtn";
+            doneBtn.Size = new Size(185, 50);
+            doneBtn.TabIndex = 2;
+            doneBtn.Text = "Set Status as Done";
+            doneBtn.UseVisualStyleBackColor = true;
+            doneBtn.Click += doneBtn_Click;
+            // 
+            // cancelledBtn
+            // 
+            cancelledBtn.Dock = DockStyle.Top;
+            cancelledBtn.Location = new Point(0, 50);
+            cancelledBtn.Name = "cancelledBtn";
+            cancelledBtn.Size = new Size(185, 50);
+            cancelledBtn.TabIndex = 1;
+            cancelledBtn.Text = "Set Status as Cancelled";
+            cancelledBtn.UseVisualStyleBackColor = true;
+            cancelledBtn.Click += cancelledBtn_Click;
+            // 
+            // setActiveBtn
+            // 
+            setActiveBtn.Dock = DockStyle.Top;
+            setActiveBtn.Location = new Point(0, 0);
+            setActiveBtn.Name = "setActiveBtn";
+            setActiveBtn.Size = new Size(185, 50);
+            setActiveBtn.TabIndex = 0;
+            setActiveBtn.Text = "Set Status as Active";
+            setActiveBtn.UseVisualStyleBackColor = true;
+            setActiveBtn.Click += setActiveBtn_Click;
+            // 
+            // orderDgv
+            // 
+            orderDgv.AllowUserToAddRows = false;
+            orderDgv.AllowUserToDeleteRows = false;
+            orderDgv.AllowUserToResizeRows = false;
+            orderDgv.BorderStyle = BorderStyle.None;
+            orderDgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            orderDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            orderDgv.Location = new Point(68, 148);
+            orderDgv.Name = "orderDgv";
+            orderDgv.RowHeadersVisible = false;
+            orderDgv.RowHeadersWidth = 51;
+            orderDgv.RowTemplate.Height = 29;
+            orderDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            orderDgv.Size = new Size(565, 478);
+            orderDgv.TabIndex = 1;
             // 
             // label2
             // 
@@ -156,8 +251,6 @@
             // 
             psettingsPnl.Controls.Add(locationTxtB);
             psettingsPnl.Controls.Add(label8);
-            psettingsPnl.Controls.Add(ratingTxtB);
-            psettingsPnl.Controls.Add(label9);
             psettingsPnl.Controls.Add(busNameTxtB);
             psettingsPnl.Controls.Add(label10);
             psettingsPnl.Controls.Add(saveBtn);
@@ -169,14 +262,14 @@
             psettingsPnl.Controls.Add(label5);
             psettingsPnl.Controls.Add(label3);
             psettingsPnl.Dock = DockStyle.Right;
-            psettingsPnl.Location = new Point(330, 0);
+            psettingsPnl.Location = new Point(-1534, 0);
             psettingsPnl.Name = "psettingsPnl";
             psettingsPnl.Size = new Size(932, 673);
             psettingsPnl.TabIndex = 1;
             // 
             // locationTxtB
             // 
-            locationTxtB.Location = new Point(494, 316);
+            locationTxtB.Location = new Point(494, 243);
             locationTxtB.Name = "locationTxtB";
             locationTxtB.Size = new Size(257, 27);
             locationTxtB.TabIndex = 13;
@@ -184,27 +277,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(494, 293);
+            label8.Location = new Point(494, 220);
             label8.Name = "label8";
             label8.Size = new Size(66, 20);
             label8.TabIndex = 12;
             label8.Text = "Location";
-            // 
-            // ratingTxtB
-            // 
-            ratingTxtB.Location = new Point(494, 241);
-            ratingTxtB.Name = "ratingTxtB";
-            ratingTxtB.Size = new Size(257, 27);
-            ratingTxtB.TabIndex = 11;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(494, 218);
-            label9.Name = "label9";
-            label9.Size = new Size(52, 20);
-            label9.TabIndex = 10;
-            label9.Text = "Rating";
             // 
             // busNameTxtB
             // 
@@ -295,12 +372,134 @@
             // 
             // viewMenuPnl
             // 
+            viewMenuPnl.Controls.Add(panel3);
+            viewMenuPnl.Controls.Add(panel2);
+            viewMenuPnl.Controls.Add(menuDgv);
             viewMenuPnl.Controls.Add(label4);
             viewMenuPnl.Dock = DockStyle.Right;
             viewMenuPnl.Location = new Point(-602, 0);
             viewMenuPnl.Name = "viewMenuPnl";
             viewMenuPnl.Size = new Size(932, 673);
             viewMenuPnl.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(categoryCb);
+            panel3.Controls.Add(label12);
+            panel3.Controls.Add(priceTxt);
+            panel3.Controls.Add(label11);
+            panel3.Controls.Add(pnameTxt);
+            panel3.Controls.Add(label9);
+            panel3.Location = new Point(690, 145);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(185, 308);
+            panel3.TabIndex = 3;
+            // 
+            // categoryCb
+            // 
+            categoryCb.FormattingEnabled = true;
+            categoryCb.Location = new Point(3, 156);
+            categoryCb.Name = "categoryCb";
+            categoryCb.Size = new Size(179, 28);
+            categoryCb.TabIndex = 5;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(3, 133);
+            label12.Name = "label12";
+            label12.Size = new Size(69, 20);
+            label12.TabIndex = 4;
+            label12.Text = "Category";
+            // 
+            // priceTxt
+            // 
+            priceTxt.Location = new Point(3, 91);
+            priceTxt.Name = "priceTxt";
+            priceTxt.Size = new Size(179, 27);
+            priceTxt.TabIndex = 3;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(3, 68);
+            label11.Name = "label11";
+            label11.Size = new Size(41, 20);
+            label11.TabIndex = 2;
+            label11.Text = "Price";
+            // 
+            // pnameTxt
+            // 
+            pnameTxt.Location = new Point(3, 26);
+            pnameTxt.Name = "pnameTxt";
+            pnameTxt.Size = new Size(179, 27);
+            pnameTxt.TabIndex = 1;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(3, 3);
+            label9.Name = "label9";
+            label9.Size = new Size(104, 20);
+            label9.TabIndex = 0;
+            label9.Text = "Product Name";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(delBtn);
+            panel2.Controls.Add(editBtn);
+            panel2.Controls.Add(addBtn);
+            panel2.Location = new Point(690, 473);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(185, 153);
+            panel2.TabIndex = 2;
+            // 
+            // delBtn
+            // 
+            delBtn.Dock = DockStyle.Top;
+            delBtn.Location = new Point(0, 100);
+            delBtn.Name = "delBtn";
+            delBtn.Size = new Size(185, 50);
+            delBtn.TabIndex = 2;
+            delBtn.Text = "Delete";
+            delBtn.UseVisualStyleBackColor = true;
+            // 
+            // editBtn
+            // 
+            editBtn.Dock = DockStyle.Top;
+            editBtn.Location = new Point(0, 50);
+            editBtn.Name = "editBtn";
+            editBtn.Size = new Size(185, 50);
+            editBtn.TabIndex = 1;
+            editBtn.Text = "Edit";
+            editBtn.UseVisualStyleBackColor = true;
+            // 
+            // addBtn
+            // 
+            addBtn.Dock = DockStyle.Top;
+            addBtn.Location = new Point(0, 0);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(185, 50);
+            addBtn.TabIndex = 0;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = true;
+            // 
+            // menuDgv
+            // 
+            menuDgv.AllowUserToAddRows = false;
+            menuDgv.AllowUserToDeleteRows = false;
+            menuDgv.AllowUserToResizeRows = false;
+            menuDgv.BorderStyle = BorderStyle.None;
+            menuDgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            menuDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            menuDgv.Location = new Point(68, 148);
+            menuDgv.Name = "menuDgv";
+            menuDgv.RowHeadersVisible = false;
+            menuDgv.RowHeadersWidth = 51;
+            menuDgv.RowTemplate.Height = 29;
+            menuDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            menuDgv.Size = new Size(565, 478);
+            menuDgv.TabIndex = 1;
             // 
             // label4
             // 
@@ -319,21 +518,28 @@
             ClientSize = new Size(1262, 673);
             Controls.Add(menuPnl);
             Controls.Add(welcomePnl);
-            Controls.Add(viewOrdersPnl);
-            Controls.Add(viewMenuPnl);
             Controls.Add(psettingsPnl);
+            Controls.Add(viewMenuPnl);
+            Controls.Add(viewOrdersPnl);
             MaximizeBox = false;
             Name = "RestaurantForm";
             Text = "Restaurant Panel";
+            Load += RestaurantForm_Load;
             menuPnl.ResumeLayout(false);
             welcomePnl.ResumeLayout(false);
             welcomePnl.PerformLayout();
             viewOrdersPnl.ResumeLayout(false);
             viewOrdersPnl.PerformLayout();
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)orderDgv).EndInit();
             psettingsPnl.ResumeLayout(false);
             psettingsPnl.PerformLayout();
             viewMenuPnl.ResumeLayout(false);
             viewMenuPnl.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)menuDgv).EndInit();
             ResumeLayout(false);
         }
 
@@ -361,10 +567,26 @@
         private Button saveBtn;
         private RichTextBox richTextBox1;
         private Label label8;
-        private TextBox ratingTxtB;
-        private Label label9;
         private TextBox busNameTxtB;
         private Label label10;
         private TextBox locationTxtB;
+        private DataGridView orderDgv;
+        private Panel panel1;
+        private Button deleteBtn;
+        private Button doneBtn;
+        private Button cancelledBtn;
+        private Button setActiveBtn;
+        private DataGridView menuDgv;
+        private Panel panel2;
+        private Button addBtn;
+        private Button delBtn;
+        private Button editBtn;
+        private Panel panel3;
+        private TextBox pnameTxt;
+        private Label label9;
+        private Label label12;
+        private TextBox priceTxt;
+        private Label label11;
+        private ComboBox categoryCb;
     }
 }

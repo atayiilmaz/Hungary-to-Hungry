@@ -30,7 +30,7 @@ namespace From_Hungary_for_hungry
         private void AdminForm_Load(object sender, EventArgs e)
         {
             //for reading restaurant accounts
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT id,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
+            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT uid,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             restaurantsDt.DataSource = dt;
@@ -94,7 +94,7 @@ namespace From_Hungary_for_hungry
             allRestaurantsPnl.Visible = true;
 
             //for reading restaurant accounts
-            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT id,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
+            SqlDataAdapter sda = new SqlDataAdapter(@"SELECT uid,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             restaurantsDt.DataSource = dt;
@@ -113,11 +113,11 @@ namespace From_Hungary_for_hungry
                 else
                 {
                     //Getting the id value when the row is clicked from DataGridView
-                    int memberId = Convert.ToInt32(restaurantsDt.SelectedRows[0].Cells["id"].Value);
+                    int memberId = Convert.ToInt32(restaurantsDt.SelectedRows[0].Cells["uid"].Value);
 
                     con.Open();
 
-                    string sqlQuery = "UPDATE tb_accounts SET membershipStatus = 'true' WHERE id = @id";
+                    string sqlQuery = "UPDATE tb_accounts SET membershipStatus = 'true' WHERE uid = @id";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
@@ -128,7 +128,7 @@ namespace From_Hungary_for_hungry
                     MessageBox.Show("Membership has given to the restaurant!");
 
                     //Refreshing the table
-                    SqlDataAdapter sda = new SqlDataAdapter(@"SELECT id,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
+                    SqlDataAdapter sda = new SqlDataAdapter(@"SELECT uid,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     restaurantsDt.DataSource = dt;
@@ -150,11 +150,11 @@ namespace From_Hungary_for_hungry
                 if (MessageBox.Show("Are you sure you want to delete this account?", "Delete" , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     //Getting the id value when the row is clicked from DataGridView
-                    int memberId = Convert.ToInt32(accountsDt.SelectedRows[0].Cells["id"].Value);
+                    int memberId = Convert.ToInt32(accountsDt.SelectedRows[0].Cells["uid"].Value);
 
                     con.Open();
 
-                    string sqlQuery = "DELETE FROM tb_accounts WHERE id = @id";
+                    string sqlQuery = "DELETE FROM tb_accounts WHERE uid = @id";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
@@ -192,11 +192,11 @@ namespace From_Hungary_for_hungry
                 else
                 {
                     //Getting the id value when the row is clicked from DataGridView
-                    int memberId = Convert.ToInt32(restaurantsDt.SelectedRows[0].Cells["id"].Value);
+                    int memberId = Convert.ToInt32(restaurantsDt.SelectedRows[0].Cells["uid"].Value);
 
                     con.Open();
 
-                    string sqlQuery = "UPDATE tb_accounts SET membershipStatus = 'false' WHERE id = @id";
+                    string sqlQuery = "UPDATE tb_accounts SET membershipStatus = 'false' WHERE uid = @id";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, con))
                     {
@@ -207,7 +207,7 @@ namespace From_Hungary_for_hungry
                     MessageBox.Show("Membership has been removed from restaurant!");
 
                     //Refreshing the table
-                    SqlDataAdapter sda = new SqlDataAdapter(@"SELECT id,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
+                    SqlDataAdapter sda = new SqlDataAdapter(@"SELECT uid,username,businessName,rating,email,location,address,membershipStatus FROM tb_accounts WHERE type='Restaurant' ", con);
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     restaurantsDt.DataSource = dt;
