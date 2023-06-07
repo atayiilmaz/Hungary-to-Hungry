@@ -58,6 +58,7 @@
             label3 = new Label();
             viewMenuPnl = new Panel();
             panel3 = new Panel();
+            businessNameTxt = new TextBox();
             categoryCb = new ComboBox();
             label12 = new Label();
             priceTxt = new TextBox();
@@ -160,7 +161,7 @@
             viewOrdersPnl.Controls.Add(orderDgv);
             viewOrdersPnl.Controls.Add(label2);
             viewOrdersPnl.Dock = DockStyle.Right;
-            viewOrdersPnl.Location = new Point(330, 0);
+            viewOrdersPnl.Location = new Point(-602, 0);
             viewOrdersPnl.Name = "viewOrdersPnl";
             viewOrdersPnl.Size = new Size(932, 673);
             viewOrdersPnl.TabIndex = 1;
@@ -377,13 +378,14 @@
             viewMenuPnl.Controls.Add(menuDgv);
             viewMenuPnl.Controls.Add(label4);
             viewMenuPnl.Dock = DockStyle.Right;
-            viewMenuPnl.Location = new Point(-602, 0);
+            viewMenuPnl.Location = new Point(330, 0);
             viewMenuPnl.Name = "viewMenuPnl";
             viewMenuPnl.Size = new Size(932, 673);
             viewMenuPnl.TabIndex = 1;
             // 
             // panel3
             // 
+            panel3.Controls.Add(businessNameTxt);
             panel3.Controls.Add(categoryCb);
             panel3.Controls.Add(label12);
             panel3.Controls.Add(priceTxt);
@@ -395,9 +397,18 @@
             panel3.Size = new Size(185, 308);
             panel3.TabIndex = 3;
             // 
+            // businessNameTxt
+            // 
+            businessNameTxt.Location = new Point(30, 260);
+            businessNameTxt.Name = "businessNameTxt";
+            businessNameTxt.Size = new Size(125, 27);
+            businessNameTxt.TabIndex = 6;
+            // 
             // categoryCb
             // 
+            categoryCb.AutoCompleteCustomSource.AddRange(new string[] { "Homemade Foods", "Mexican Foods", "Chinese Foods", "Appetizers", "Fast Foods", "Drinks" });
             categoryCb.FormattingEnabled = true;
+            categoryCb.Items.AddRange(new object[] { "Homemade Foods", "Chinese Foods", "Mexican Foods", "Fast Foods", "Appetizers", "Drinks" });
             categoryCb.Location = new Point(3, 156);
             categoryCb.Name = "categoryCb";
             categoryCb.Size = new Size(179, 28);
@@ -463,6 +474,7 @@
             delBtn.TabIndex = 2;
             delBtn.Text = "Delete";
             delBtn.UseVisualStyleBackColor = true;
+            delBtn.Click += delBtn_Click;
             // 
             // editBtn
             // 
@@ -473,6 +485,7 @@
             editBtn.TabIndex = 1;
             editBtn.Text = "Edit";
             editBtn.UseVisualStyleBackColor = true;
+            editBtn.Click += editBtn_Click;
             // 
             // addBtn
             // 
@@ -483,6 +496,7 @@
             addBtn.TabIndex = 0;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = true;
+            addBtn.Click += addBtn_Click;
             // 
             // menuDgv
             // 
@@ -498,8 +512,13 @@
             menuDgv.RowHeadersWidth = 51;
             menuDgv.RowTemplate.Height = 29;
             menuDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            menuDgv.ShowCellErrors = false;
+            menuDgv.ShowCellToolTips = false;
+            menuDgv.ShowEditingIcon = false;
+            menuDgv.ShowRowErrors = false;
             menuDgv.Size = new Size(565, 478);
             menuDgv.TabIndex = 1;
+            menuDgv.CellContentClick += menuDgv_CellContentClick;
             // 
             // label4
             // 
@@ -519,8 +538,8 @@
             Controls.Add(menuPnl);
             Controls.Add(welcomePnl);
             Controls.Add(psettingsPnl);
-            Controls.Add(viewMenuPnl);
             Controls.Add(viewOrdersPnl);
+            Controls.Add(viewMenuPnl);
             MaximizeBox = false;
             Name = "RestaurantForm";
             Text = "Restaurant Panel";
@@ -588,5 +607,6 @@
         private TextBox priceTxt;
         private Label label11;
         private ComboBox categoryCb;
+        private TextBox businessNameTxt;
     }
 }

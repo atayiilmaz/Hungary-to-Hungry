@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace From_Hungary_for_hungry
@@ -63,8 +65,6 @@ namespace From_Hungary_for_hungry
             welcomePnl.Visible = false;
             viewMenuPnl.Visible = false;
 
-            //View Orders Query
-
         }
 
         private void viewMenuBtn_Click(object sender, EventArgs e)
@@ -73,6 +73,7 @@ namespace From_Hungary_for_hungry
             psettingsPnl.Visible = false;
             welcomePnl.Visible = false;
             viewMenuPnl.Visible = true;
+            businessNameTxt.Visible = false;
         }
 
         private void psettingsBtn_Click(object sender, EventArgs e)
@@ -110,6 +111,54 @@ namespace From_Hungary_for_hungry
                 con.Open();
                 command.ExecuteNonQuery();
                 con.Close();
+            }
+        }
+
+        void editProduct(float price, string name, string category, int id)
+        {
+            string q = "UPDATE tb_products SET name=@name, price=@price, category=@category WHERE id=@id";
+
+            using (SqlCommand command = new SqlCommand(q, con))
+            {
+
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@price", price);
+
+                if (!string.IsNullOrEmpty(name))
+                    command.Parameters.AddWithValue("@name", name);
+
+                if (!string.IsNullOrEmpty(category))
+                    command.Parameters.AddWithValue("@category", category);
+
+
+                con.Open();
+                command.ExecuteNonQuery();
+
+            }
+
+        }
+
+        void addProduct(float price, string name, string category, string businessName)
+        {
+            string q = "INSERT INTO tb_products (price, name, category, businessName) VALUES (@price, @name, @category, @businessName)";
+
+            using (SqlCommand command = new SqlCommand(q, con))
+            {
+
+                command.Parameters.AddWithValue("@price", price);
+
+                if (!string.IsNullOrEmpty(name))
+                    command.Parameters.AddWithValue("@name", name);
+
+                if (!string.IsNullOrEmpty(category))
+                    command.Parameters.AddWithValue("@category", category);
+
+                if (!string.IsNullOrEmpty(businessName))
+                    command.Parameters.AddWithValue("@businessName", businessName);
+
+                con.Open();
+                command.ExecuteNonQuery();
+
             }
         }
 
@@ -287,6 +336,112 @@ namespace From_Hungary_for_hungry
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     orderDgv.DataSource = dt;
+
+                    con.Close();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please select one of them!");
+            }
+
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            string productName = pnameTxt.Text;
+            float price = (float)Convert.ToDouble(priceTxt.Text);
+            string businessName = businessNameTxt.Text;
+            string category = categoryCb.Text;
+
+            // Only insert the user if the email is not empty
+            if (!string.IsNullOrEmpty(businessName))
+            {
+                addProduct(price, productName, category, businessName);
+                MessageBox.Show("User data inserted successfully!");
+
+                //for refreshing table
+                SqlDataAdapter sda1 = new SqlDataAdapter(@"SELECT * FROM tb_products", con);
+                DataTable dt1 = new DataTable();
+                sda1.Fill(dt1);
+                menuDgv.DataSource = dt1;
+                con.Close();
+            }
+            else
+            {
+                MessageBox.Show("The fields are empty");
+            }
+        }
+
+        private void menuDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row index is selected
+            {
+                DataGridViewRow row = menuDgv.Rows[e.RowIndex];
+
+                // Assuming the data is stored in specific columns of the DataGridView
+                string productName = row.Cells["name"].Value.ToString();
+                string price = row.Cells["price"].Value.ToString();
+                string category = row.Cells["category"].Value.ToString();
+                string businessName = row.Cells["businessName"].Value.ToString();
+
+                // Populate the textboxes with the clicked row's data
+                pnameTxt.Text = productName;
+                priceTxt.Text = price;
+                categoryCb.Text = category;
+                businessNameTxt.Text = businessName;
+            }
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            string productName = pnameTxt.Text;
+            float price = (float)Convert.ToDouble(priceTxt.Text);
+            string category = categoryCb.Text;
+            int id = Convert.ToInt32(menuDgv.SelectedRows[0].Cells["id"].Value);
+            //int id = menuDgv.
+
+            // Only update the user if the email is not empty
+
+            editProduct(price, productName, category, id);
+                MessageBox.Show("Product saved successfully!");
+
+                //for refreshing table
+                SqlDataAdapter sda1 = new SqlDataAdapter(@"SELECT * FROM tb_products", con);
+                DataTable dt1 = new DataTable();
+                sda1.Fill(dt1);
+                menuDgv.DataSource = dt1;
+                con.Close();
+        }
+
+        private void delBtn_Click(object sender, EventArgs e)
+        {
+            if (menuDgv.SelectedRows.Count > 0)
+            {
+                //validation for if the membership status is false
+                if (MessageBox.Show("Are you sure you want to delete this product?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //Getting the id value when the row is clicked from DataGridView
+                    int productId = Convert.ToInt32(menuDgv.SelectedRows[0].Cells["id"].Value);
+
+                    con.Open();
+
+                    string sqlQuery = "DELETE FROM tb_products WHERE id = @id";
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@id", productId);
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Product has been deleted!");
+
+                    //Refreshing the table
+                    SqlDataAdapter sda = new SqlDataAdapter(@"SELECT * FROM tb_products", con);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    menuDgv.DataSource = dt;
 
                     con.Close();
                 }

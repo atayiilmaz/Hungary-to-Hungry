@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listBox1 = new ListBox();
             pictureBox1 = new PictureBox();
             CartPanel = new Panel();
             button2 = new Button();
@@ -36,24 +35,15 @@
             button1 = new Button();
             label1 = new Label();
             pictureBox2 = new PictureBox();
+            panel1 = new Panel();
+            logouttBtn = new Button();
+            listView1 = new ListView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             CartPanel.SuspendLayout();
             MenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // listBox1
-            // 
-            listBox1.BackColor = SystemColors.InactiveBorder;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 20;
-            listBox1.Items.AddRange(new object[] { "5.0 - Pizza 4 Sale", "5.0 - Grapes Lounge Pub", "5.0 - Coffemania", "5.0 - The Brunch", "5.0 - Homely Café", "5.0 - The Eat Spot", "5.0 - The Hash House", "5.0 - The Pit Spot", "5.0 - The Snack Bar", "5.0 - The Pub", "5.0 - The Deli", "5.0 - The British Tea House", "5.0 - The Beerhouse", "5.0 - Cocktail", "5.0 - The Tied House", "5.0 - Brasserie", "5.0 - Café Spot", "5.0 - The Outlet Hub", "5.0 - The Former", "5.0 - The Juke", "5.0 - Entertainment Spot", "5.0 - The Food Resort", "5.0 - The Pub Hub", "5.0 - Sustainable", "5.0 - The Minor", "5.0 - Eatable", "5.0 - The Long Dinner", "5.0 - The Star Hub", "5.0 - The Deli Food", "5.0 - Flourish", "5.0 - Egg and Bowl", "5.0 - The Rice Bowl", "5.0 - The Dune", "5.0 - Casual Restaurant", "5.0 - The Shabby Space", "5.0 - The Incorporative", "5.0 - The Natural Resort", "5.0 - Eatery Spot", "5.0 - The Coffee Spot", "5.0 - The Ample Service", "5.0 - Busy Dine", "5.0 - The Tasty Spot", "5.0 - Fancy Co.", "5.0 - The Meals", "5.0 - The Dawn", "5.0 - Thyme for Lunch", "5.0 - Wok This Way", "5.0 - Lettuce Eat", "5.0 - Pho Real", "5.0 - Pita Pan", "5.0 - Lord of the Fries", "5.0 - Grillenium Falcon", "5.0 - Tequila Mockingbird" });
-            listBox1.Location = new Point(14, 16);
-            listBox1.Margin = new Padding(3, 4, 3, 4);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(315, 564);
-            listBox1.TabIndex = 0;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // pictureBox1
             // 
@@ -70,10 +60,10 @@
             CartPanel.BackColor = SystemColors.ActiveCaption;
             CartPanel.Controls.Add(button2);
             CartPanel.Controls.Add(pictureBox1);
-            CartPanel.Location = new Point(711, 16);
+            CartPanel.Location = new Point(1015, 16);
             CartPanel.Margin = new Padding(3, 4, 3, 4);
             CartPanel.Name = "CartPanel";
-            CartPanel.Size = new Size(190, 565);
+            CartPanel.Size = new Size(235, 565);
             CartPanel.TabIndex = 2;
             // 
             // button2
@@ -93,10 +83,10 @@
             MenuPanel.Controls.Add(button1);
             MenuPanel.Controls.Add(label1);
             MenuPanel.Controls.Add(pictureBox2);
-            MenuPanel.Location = new Point(336, 16);
+            MenuPanel.Location = new Point(674, 16);
             MenuPanel.Margin = new Padding(3, 4, 3, 4);
             MenuPanel.Name = "MenuPanel";
-            MenuPanel.Size = new Size(371, 565);
+            MenuPanel.Size = new Size(335, 565);
             MenuPanel.TabIndex = 3;
             // 
             // button1
@@ -129,29 +119,58 @@
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ControlDark;
+            panel1.Controls.Add(logouttBtn);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(324, 591);
+            panel1.TabIndex = 4;
+            // 
+            // logouttBtn
+            // 
+            logouttBtn.Location = new Point(12, 275);
+            logouttBtn.Name = "logouttBtn";
+            logouttBtn.Size = new Size(297, 69);
+            logouttBtn.TabIndex = 0;
+            logouttBtn.Text = "Logout";
+            logouttBtn.UseVisualStyleBackColor = true;
+            logouttBtn.Click += logouttBtn_Click;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(330, 16);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(338, 565);
+            listView1.TabIndex = 5;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(914, 600);
-            Controls.Add(listBox1);
+            ClientSize = new Size(1262, 591);
+            Controls.Add(listView1);
+            Controls.Add(panel1);
             Controls.Add(CartPanel);
             Controls.Add(MenuPanel);
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
             Name = "CustomerForm";
-            Text = "CustomerForm";
+            Text = "Customer Panel";
             Load += CustomerForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             CartPanel.ResumeLayout(false);
             MenuPanel.ResumeLayout(false);
             MenuPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ListBox listBox1;
         private PictureBox pictureBox1;
         private Panel CartPanel;
         private Panel MenuPanel;
@@ -159,5 +178,8 @@
         private Label label1;
         private Button button1;
         private Button button2;
+        private Panel panel1;
+        private Button logouttBtn;
+        private ListView listView1;
     }
 }
